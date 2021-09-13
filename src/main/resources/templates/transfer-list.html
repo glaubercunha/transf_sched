@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Transf Sched</title>
+    </head>
+    <body>
+        <h1>Transfer List</h1>
+        
+        <div>
+            <nobr>
+                <a th:href="@{/transfers/add}">Add</a> |
+            </nobr>
+        </div>
+        <br/><br/>
+        <div>
+            <table border="1">
+                <tr>
+                    <th>Id</th>
+                    <th>Credit Account</th>
+                    <th>Debit Account</th>
+                    <th>Date Scheduling</th>
+                    <th>Date Transfer</th>
+                    <th>Money</th>
+                    <th>Rate</th>
+                </tr>
+                <tr th:each ="transfer : ${transfers}">
+					<td th:utext="${transfer.id}">...</td>                
+					<td th:utext="${transfer.creditAccount}" id="creditAccount">...</td>                
+					<td th:utext="${transfer.debitAccount}" id="debitAccount">...</td>                
+					<td th:utext="${transfer.dtScheduling}" id="dtScheduling">...</td>                
+					<td th:utext="${transfer.dtTransfer}" id="dtTransfer">...</td>                
+					<td th:utext="${transfer.money}">...</td>                
+					<td th:utext="${transfer.rate}">...</td>                
+                </tr>
+            </table>          
+        </div>
+        <br/><br/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+	
+	
+	    <script type="text/javascript">
+		    $("#dtScheduling, #dtTransfer").mask("0000-00-00");
+		    $("#creditAccount, #debitAccount").mask('###', {optional: false});
+	    </script>        
+    </body>
+</html>

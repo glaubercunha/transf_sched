@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+    </head>
+    <body>
+        <h1 th:text="'Create a Transfer:'" />
+        <a th:href="@{/transfers}">Back to Transfer List</a>
+        <br/><br/>
+        <form th:action="@{/transfers/add}"
+              th:object="${transfer}" method="POST" id="transferForm">
+            <table border="0">
+                <tr>
+                    <td>Credit Account</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{creditAccount}" id="creditAccount"/></td>              
+                </tr>
+                <tr>
+                    <td>Debit Account</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{debitAccount}" id="debitAccount"/></td>              
+                </tr>
+                </tr>                <tr>
+                    <td>Money</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{money}" id="money"/></td>              
+                </tr>
+                <tr>
+                    <td>Date Transfer</td>
+                    <td>:</td>
+                    <td><input type="text" th:field="*{dtTransfer}" id="dtTransfer"/></td>              
+            </table>
+            <input type="submit" th:value="Save" />
+        </form>
+ 
+        <br/>
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+  
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+				<script type="text/javascript" src="localization/en.messages.js"> </script>
+
+			    <script type="text/javascript">
+				    $("#dtTransfer").mask("0000-00-00");
+				    $("#creditAccount, #debitAccount").mask("000000");
+				    $('#money').mask('#0.00', {reverse: true});
+				    $("input").attr("required", "true");
+			    </script>
+            </body>
+</html>
